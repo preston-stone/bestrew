@@ -213,7 +213,7 @@ w.work_status is 'Published';
 -- Triggers structure for table submissions
 -- ----------------------------
 DROP TRIGGER IF EXISTS "main"."Create Via Submissions Table";
-DELIMITER ;;
+
 CREATE TRIGGER "Create Via Submissions Table" AFTER INSERT ON "submissions" FOR EACH ROW
 BEGIN
 
@@ -235,9 +235,9 @@ BEGIN
 
 END
 ;;
-DELIMITER ;
+
 DROP TRIGGER IF EXISTS "main"."Update Venue Via Submission Table";
-DELIMITER ;;
+
 CREATE TRIGGER "Update Venue Via Submission Table" AFTER UPDATE OF "venue_name" ON "submissions"
 BEGIN
   /* Trigger action (UPDATE, INSERT, DELETE or SELECT statements) goes here. */
@@ -246,4 +246,4 @@ BEGIN
 	WHERE venue_id  = (SELECT venue_id FROM venues WHERE venue_title = old.venue_name);
 END
 ;;
-DELIMITER ;
+
